@@ -18,6 +18,7 @@ public class Hacker : MonoBehaviour
     void ShowMainMenu()
     {
         Terminal.ClearScreen();
+        currentScreen = Screen.MainMenu;
         Terminal.WriteLine("How do you want to use your abilities?");
         Terminal.WriteLine("\n");
         Terminal.WriteLine("1 White - I hack to help");
@@ -31,22 +32,26 @@ public class Hacker : MonoBehaviour
     {
        if(input == "menu")
         {
-            currentScreen = Screen.MainMenu;
             ShowMainMenu();
+        }
+        else if(currentScreen == Screen.MainMenu)
+        {
+            RunMainMenuInput(input);
+        }
+
+    }
+
+    void RunMainMenuInput(string input)
+    {
+        if (Int32.TryParse(input, out level) && level <= 3 && level > 0)
+        {
+            currentScreen = Screen.Password;
+            StartGame();
         }
         else
         {
-            if (Int32.TryParse(input, out level) && level <= 3 && level > 0)
-            {
-                currentScreen = Screen.Password;
-                StartGame();
-            }
-            else
-            {
-                Terminal.WriteLine("Please select a valid level");
-            }
+            Terminal.WriteLine("Please select a valid level");
         }
-        
     }
 
     void StartGame()
