@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
+    const string menuHint = "Type 'menu' to return to start";
     int level;
     enum Screen {MainMenu, Password, Win};
     Screen currentScreen = Screen.MainMenu;
     string password;
+
+    string[] whitePasswords = { "help", "aid", "save" };
+    string[] greyPasswords = { "find", "seek", "look" };
+    string[] blackPasswords = { "hurt", "steal", "destroy" };
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class Hacker : MonoBehaviour
         }
         else if(currentScreen == Screen.MainMenu)
         {
-            RunMainMenuInput(input);
+            LevelSelect(input);
         } else if(currentScreen == Screen.Password)
         {
             RunCheckPassword(input);
@@ -45,12 +47,16 @@ public class Hacker : MonoBehaviour
 
     }
 
-    void RunMainMenuInput(string input)
+    void LevelSelect(string input)
     {
-        if (Int32.TryParse(input, out level) && level <= 3 && level > 0)
+        if (int.TryParse(input, out level) && level <= 3 && level > 0)
         {
+            //valid level selected
+            Terminal.ClearScreen();
+            Terminal.WriteLine("You have chosen level " + level);
             currentScreen = Screen.Password;
-            StartGame();
+            SetRandomPassword();
+            AskForPassword();
         }
         else
         {
@@ -60,32 +66,98 @@ public class Hacker : MonoBehaviour
 
     void RunCheckPassword(string input)
     {
-        switch (level)
-        {
-            case 1:
-                password = "white";                
-                break;
-            case 2:
-                password = "grey";
-                break;
-            default:
-                password = "black";
-                break;
-        }
+        
         if (input == password)
         {
-            Terminal.WriteLine("Win!");
+            DisplayWinScreen();
         }
         else
         {
-            Terminal.WriteLine("Try again...");
+            AskForPassword();
         }
     }
 
-    void StartGame()
-    {
-        Terminal.WriteLine("You have chosen level " + level);
-        Terminal.WriteLine("Please enter your password...");
+    void AskForPassword()
+    { 
+        Terminal.WriteLine("Enter your password. Hint: " + password.Anagram());
+        Terminal.WriteLine(menuHint);
     }
+
+    void SetRandomPassword()
+    {
+        switch (level)
+        {
+            case 1:
+                password = whitePasswords[Random.Range(0, whitePasswords.Length)];
+                break;
+            case 2:
+                password = greyPasswords[Random.Range(0, greyPasswords.Length)];
+                break;
+            default:
+                password = blackPasswords[Random.Range(0, blackPasswords.Length)];
+                break;
+        }
+    }
+
+    void DisplayWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+        Terminal.WriteLine(menuHint);
+    }
+
+    void ShowLevelReward()
+    {
+        switch(level)
+        {
+            case 1:
+                Terminal.WriteLine("Hack successful...");
+                Terminal.WriteLine(@"
+ _                _             
+| |              | |            
+| |__   __ _  ___| | _____ _ __ 
+| '_ \ / _` |/ __| |/ / _ \ '__|
+| | | | (_| | (__|   <  __/ |   
+|_| |_|\__,_|\___|_|\_\___|_|   
+                                
+                                
+");
+                break;
+            case 2:
+                Terminal.WriteLine("Hack successful...");
+                Terminal.WriteLine(@"
+ _                _             
+| |              | |            
+| |__   __ _  ___| | _____ _ __ 
+| '_ \ / _` |/ __| |/ / _ \ '__|
+| | | | (_| | (__|   <  __/ |   
+|_| |_|\__,_|\___|_|\_\___|_|   
+                                
+        
+");
+                break;
+            default:
+                Terminal.WriteLine("Hack successful...");
+                Terminal.WriteLine(@"
+
+ _                _             
+| |              | |            
+| |__   __ _  ___| | _____ _ __   
+| '_ \ / _` |/ __| |/ / _ \ '__|
+| | | | (_| | (__|   <  __/ |   
+|_| |_|\__,_|\___|_|\_\___|_|   
+                                
+        
+");
+                break;
+        }
+        
+    }
+
+                                                                      
+     
+
+
 
 }
