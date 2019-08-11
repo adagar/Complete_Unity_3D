@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.33288887, g: 0.32688114, b: 0.28462788, a: 1}
+  m_IndirectSpecularColor: {r: 0.4242532, g: 0.45577097, b: 0.47985834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -195,6 +195,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f80c8c8eacec14255a1ff0784bf5d942, type: 3}
+--- !u!1001 &5184155749425749117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5184155748550793272, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_Name
+      value: Rocket Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0117852185
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3202257
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.2697825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9629213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184155748550793275, guid: c6074eb300c654a15a896fc8ce30c005,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -31.303001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6074eb300c654a15a896fc8ce30c005, type: 3}
 --- !u!1001 &6261420522610893478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -353,37 +422,37 @@ PrefabInstance:
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.77
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.021667568
+      value: 0.054587867
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.25875387
+      value: -0.25840536
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0058057937
+      value: 0.014626779
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96568274
+      value: 0.9643822
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
@@ -393,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -2.571
+      value: 6.479
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989031, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
@@ -408,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 7227465167059989030, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 4.5886e-41
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989030, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
@@ -418,12 +487,12 @@ PrefabInstance:
     - target: {fileID: 7227465167059989030, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0.699722
+      value: 3.213e-42
       objectReference: {fileID: 0}
     - target: {fileID: 7227465167059989030, guid: 5db69eb40d2d744b8aaa5c341223dd26,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.6187018
+      value: 1.05e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db69eb40d2d744b8aaa5c341223dd26, type: 3}
