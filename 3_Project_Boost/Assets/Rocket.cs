@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public const int THRUST_FORCE = 3;
+    [SerializeField]
+    float rcsThrust = 100f;
+    [SerializeField]
+    float mainThrust = 100f;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -22,6 +26,23 @@ public class Rocket : MonoBehaviour
         ProcessInput();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                Debug.Log("OK");
+                break;
+            case "Fuel":
+                Debug.Log("REFUEL");
+                break;
+            default:
+                Debug.Log("DEAD");
+                break;
+        }
+    }
+
+
     private void ProcessInput()
     {
         Thrust();
@@ -30,9 +51,11 @@ public class Rocket : MonoBehaviour
 
     private void Thrust()
     {
+        float thrustThisFame = mainThrust * Time.deltaTime;
+
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(Vector3.up * THRUST_FORCE);
+            rigidBody.AddRelativeForce(Vector3.up * thrustThisFame);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play(0);
@@ -48,13 +71,15 @@ public class Rocket : MonoBehaviour
     {
         rigidBody.freezeRotation = true;
 
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
+
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(Vector3.back);
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
 
         rigidBody.freezeRotation = false;
