@@ -66,6 +66,7 @@ public class Rocket : MonoBehaviour
         }
         else
         {
+            rigidBody.AddRelativeForce(Vector3.up / 2 * thrustThisFame);
             audioSource.Stop();
         }
     }
