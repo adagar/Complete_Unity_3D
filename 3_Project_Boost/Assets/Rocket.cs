@@ -36,6 +36,9 @@ public class Rocket : MonoBehaviour
             case "Fuel":
                 Debug.Log("REFUEL");
                 break;
+            case "Goal":
+                Debug.Log("VICTORY");
+                break;
             default:
                 Debug.Log("DEAD");
                 break;
