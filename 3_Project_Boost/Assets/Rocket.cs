@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
@@ -10,6 +7,9 @@ public class Rocket : MonoBehaviour
     float rcsThrust = 100f;
     [SerializeField]
     float mainThrust = 100f;
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip successSound;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -51,21 +51,15 @@ public class Rocket : MonoBehaviour
 
     private void ProcessInput()
     {
-        Thrust();
-        Rotate();
+        RespondToThrustInput();
+        RespondToRotateInput();
     }
 
-    private void Thrust()
+    private void RespondToThrustInput()
     {
-        float thrustThisFame = mainThrust * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.W))
         {
-            rigidBody.AddRelativeForce(Vector3.up * thrustThisFame);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(0);
-            }
+            ApplyThrust();
         }
         else
         {
@@ -73,7 +67,22 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void Rotate()
+    private void ApplyThrust()
+    {
+        float thrustThisFame = mainThrust * Time.deltaTime;
+        rigidBody.AddRelativeForce(Vector3.up * thrustThisFame);
+        if (!audioSource.isPlaying)
+        {
+            //audioSource.clip = mainEngine;
+            //audioSource.Play();
+            audioSource.PlayOneShot(mainEngine, 1.0f);
+            Debug.Log("PLAYING AUDIO CLIP");
+
+        }
+        Debug.Log(audioSource.isPlaying);
+    }
+
+    private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true;
 

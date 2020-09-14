@@ -251,7 +251,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: beae5c949c9d87141896dcce0d287f4f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: -0.66
@@ -350,7 +350,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rcsThrust: 100
-  mainThrust: 300
+  mainThrust: 200
+  mainEngine: {fileID: 8300000, guid: 82477d034900d224cb3c53244ad9dc51, type: 3}
+  deathSound: {fileID: 0}
+  successSound: {fileID: 0}
 --- !u!1 &7185557616427790155
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +600,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 262b7d8ef0e344df6acff6e5fd884bb7, type: 2}
+  - {fileID: 2100000, guid: 589bf09c953f744ee81d27da82892bfc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
