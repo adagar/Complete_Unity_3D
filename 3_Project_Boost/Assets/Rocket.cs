@@ -11,6 +11,20 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip successSound;
 
+
+    [SerializeField] ParticleSystem thrusterParticles;
+    [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] ParticleSystem successParticles;
+
+    enum State
+    {
+        Alive,
+        Dying,
+        Transcending
+    }
+
+    State state = State.Alive;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -24,30 +38,59 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        if(state == State.Alive)
+        {
+            ProcessInput();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if(state != State.Alive){ return; }
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 Debug.Log("OK");
                 break;
             case "Fuel":
-                Debug.Log("REFUEL");
+                PlayAudio(successSound);
                 break;
             case "Goal":
-                Debug.Log("VICTORY");
-                SceneManager.LoadScene(1);
+                StartSuccessSequence();
                 break;
             default:
-                Debug.Log("DEAD");
-                SceneManager.LoadScene(0);
+                StartDeathSequence();
                 break;
         }
     }
 
+    private void StartSuccessSequence()
+    {
+        successParticles.Play();
+        PlayAudio(successSound);
+        state = State.Transcending;
+        Invoke("LoadNextScene", 1.0f);
+    }
+
+    private void StartDeathSequence()
+    {
+        explosionParticles.Play();
+        PlayAudio(deathSound);
+        state = State.Dying;
+        Invoke("ReloadLevel", 1.0f);
+    }
+
+    
+
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     private void ProcessInput()
     {
@@ -64,6 +107,7 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
+            thrusterParticles.Stop();
         }
     }
 
@@ -73,13 +117,9 @@ public class Rocket : MonoBehaviour
         rigidBody.AddRelativeForce(Vector3.up * thrustThisFame);
         if (!audioSource.isPlaying)
         {
-            //audioSource.clip = mainEngine;
-            //audioSource.Play();
-            audioSource.PlayOneShot(mainEngine, 1.0f);
-            Debug.Log("PLAYING AUDIO CLIP");
-
+            PlayAudio(mainEngine);
+            thrusterParticles.Play();
         }
-        Debug.Log(audioSource.isPlaying);
     }
 
     private void RespondToRotateInput()
@@ -98,5 +138,11 @@ public class Rocket : MonoBehaviour
         }
 
         rigidBody.freezeRotation = false;
+    }
+
+    private void PlayAudio(AudioClip audioClip)
+    {
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip);
     }
 }
